@@ -13,8 +13,9 @@ override CFLAGS   := $(FLAGS) $(CFLAGS)
 all: ${TARGET}.o ar
 
 $(TARGET).o: 
-	$(CXX) $(CXXFLAGS) $(SOURCE)/*.cpp $(foreach dir, $(INCLUDE), -I $(dir))
-
+	$(CXX) $(CXXFLAGS) $(SOURCE)/*.cpp $(SOURCE)/json.c $(foreach dir, $(INCLUDE), -I $(dir))
+	@# > for some compilers
+	@# no bud its called specifying the source file you fucking idiot
 ar:
 	$(AR) $(OUTPUT) *.o
 	$(RM) *.o
