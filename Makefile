@@ -1,11 +1,11 @@
-         CXX       = g++ #compiler
+         CXX       = g++ 
 		 AR        = ar rv
 		 STDFLAGS  = -Wall -c
 override FLAGS    := $(STDFLAGS) $(FLAGS)
 override CXXFLAGS := $(FLAGS) $(CXXFLAGS)
 override CFLAGS   := $(FLAGS) $(CFLAGS)
-         SOURCE    = ../sleepy_discord
-         INCLUDE   = ../include/sleepy_discord ../include/sleepy_discord/IncludeNonexistent ../deps/include
+         SOURCE    = sleepy_discord
+         INCLUDE   = include/sleepy_discord include/sleepy_discord/IncludeNonexistent deps/include
          TARGET    = libsleepy_discord
 		 SUFFIX    = .a
 		 OUTPUT    = $(TARGET)$(SUFFIX)
@@ -14,7 +14,8 @@ all: ${TARGET}.o ar
 
 $(TARGET).o: 
 	$(CXX) $(CXXFLAGS) $(SOURCE)/*.cpp $(foreach dir, $(INCLUDE), -I $(dir))
-	$(CXX) $(CFLAGS)   $(SOURCE)/*.c   $(foreach dir, $(INCLUDE), -I $(dir)) #needed for some compilers
 
 ar:
 	$(AR) $(OUTPUT) *.o
+	$(RM) *.o
+
